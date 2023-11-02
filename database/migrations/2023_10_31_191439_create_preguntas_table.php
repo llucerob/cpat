@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table) {
             $table->id();
+            $table->string('n_pregunta');
+            $table->string('pregunta');
+            $table->longText('descripcion')->nullable();
+            $table->foreignId('id_seccion')
+                    ->constrained('secciones')
+                    ->onDelete('cascade');
             $table->timestamps();
         });
     }

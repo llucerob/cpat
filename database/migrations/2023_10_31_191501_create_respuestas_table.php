@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('respuestas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_pregunta')
+                    ->constrained('preguntas')
+                    ->onDelete('cascade');
+            $table->string('alt_respuesta');
+            $table->longText('descr_alternativa')->nullable();
             $table->timestamps();
         });
     }
