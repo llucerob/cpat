@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Seccion extends Model
 {
@@ -21,4 +22,18 @@ class Seccion extends Model
         return $this->hasMany(Pregunta::class,'id_seccion', 'id');
     }
     
+    /**
+     * Get all of the respuestas for the Seccion
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function respuestas(): HasManyThrough
+    {
+        return $this->hasManyThrough(Respuesta::class, Pregunta::class, 'id_seccion', 'id_pregunta', 'id', 'id');
+
+
+    }
+
+
 }
+

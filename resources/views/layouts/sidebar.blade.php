@@ -12,7 +12,7 @@
             <li class="back-btn">
               <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
             </li>
-            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{ route('dashboard')}}" target="_blank">
+            <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="{{ route('dashboard')}}">
                 <svg class="stroke-icon">
                   <use href="{{ asset('assets/svg/icon-sprite.svg#stroke-home') }}"></use>
                 </svg>

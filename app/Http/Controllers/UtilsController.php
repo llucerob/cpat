@@ -11,10 +11,10 @@ class UtilsController extends Controller
     
     public function dashboard(){
 
-       
+        $secciones = Seccion::all();
         
 
-        return view('dashboard');
+        return view('dashboard', ['secciones' => $secciones]);
     }
 
     public function secciones($sec){
@@ -23,10 +23,12 @@ class UtilsController extends Controller
        $secciones = Seccion::all();
 
        //dd($seccion->preguntas);
+
+       
         
 
         
-        return view('forms/'.$sec);
+        return view('forms/'.$sec, ['preguntas' => $seccion->preguntas]);
         
         
         

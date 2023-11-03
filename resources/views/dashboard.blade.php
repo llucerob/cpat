@@ -5,6 +5,8 @@
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/prism.css') }}">
+    <!--API Datatable css-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/vendors/datatables.css')}}">      
 @endsection
 
 @section('style')
@@ -22,6 +24,32 @@
 @section('content')
 <div class="container-fluid">
     <div class="row starter-main">
+
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Procedimientos Comenzados o terminados</h5>
+
+                    
+                </div>
+                <div class="card-body">
+                    <table class="display" id="basic-2">
+                        <thead>
+                            <tr>
+                                @foreach($secciones as $s)
+                                    <th>{{$s->seccion}}</th>
+
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
         <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">
@@ -62,4 +90,8 @@
 @endsection
 
 @section('script')
+
+<!--API Datatable js-->
+<script src="{{ asset('assets/js/datatable/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/js/datatable/datatables/datatable.custom.js')}}" ></script>
 @endsection
