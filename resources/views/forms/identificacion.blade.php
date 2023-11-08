@@ -36,11 +36,11 @@
                         <div class="row g-3">
                             @foreach($preguntas as $p)
 
-                                <div class="col-md-12">
+                                <div class="col-md-12" onclick="cambiacolor({{$p->id}});">
                                     <label class="form-label" for="validationCustom01">{{$p->n_pregunta}}.-  {{$p->pregunta}}</label>
                                     @if(count($p->respuestas)>0)
 
-                                    <select name="" class="js-example-basic-single col-sm-12" id="">
+                                    <select name="" class="js-example-basic-single col-sm-12" id="" >
                                         @foreach($p->respuestas as $r )
                                             <option value="">{{$r->alt_respuesta}}</option>
                                         @endforeach
@@ -50,14 +50,18 @@
                                     <input class="form-control" id="validationCustom01" type="text" required="" data-bs-original-title="" title="">
 
                                     @endif
-                                    <div class="valid-feedback">Looks good!</div>
+                                    <div class="valid-feedback">Genial!</div>
                                </div>
 
                             @endforeach
                                                                         
                         </div>
+                        <div class="row g-3 m-2">
+                            <button class="btn btn-primary" type="submit" data-bs-original-title="" title="">Guardar</button>
+
+                        </div>
                                             
-                       <button class="btn btn-primary" type="submit" data-bs-original-title="" title="">Guardar</button>
+                       
                     </form>
 
                 </div>
@@ -71,14 +75,16 @@
                     
                 </div>
                 <div class="card-body">
+                    <ul>
                     @foreach($preguntas as $c)
                     
 
-                    <ul>
-                        <li>{{$c->n_pregunta}}.- {{$c->descripcion}}</li>
-                    </ul>
+                    
+                        <li id="{{$c->id}}">{{$c->n_pregunta}}.- {{$c->descripcion}}</li>
+                    
                     
                     @endforeach
+                </ul>
                     
 
                 </div>
@@ -99,5 +105,20 @@
     <script src="{{asset('assets/js/select2/select2-custom.js')}}"></script>
     <script src="{{asset('assets/js/select2/tagify.js')}}"></script>
     <script src="{{asset('assets/js/select2/tagify.polyfills.min.js')}}"></script>
+    <script>
+        
+        function cambiacolor(variable){
+        const caja = document.getElementById(variable);
+        
+        caja.style.border = "2px solid red";
+        caja.style.margin = "5px";
+        setTimeout(() => {
+            caja.style.border = "";
+            caja.style.margin = "";
+            
+        }, 4000);
+
+        }
+    </script>
 
 @endsection

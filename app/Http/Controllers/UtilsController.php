@@ -28,7 +28,7 @@ class UtilsController extends Controller
         
 
         
-        return view('forms/'.$sec, ['preguntas' => $seccion->preguntas]);
+        return view('forms/'.$sec, ['preguntas' => $seccion->preguntas, 'seccion' => $seccion->seccion]);
         
         
         
