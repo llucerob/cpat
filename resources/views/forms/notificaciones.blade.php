@@ -41,6 +41,16 @@
                                 <div class="col-md-12" onclick="cambiacolor({{$p->id}});" id="preg{{$key}}" >
                                     <label class="form-label" for="validationCustom01">{{$p->n_pregunta}}.-  {{$p->pregunta}}</label>
                                     @if(count($p->respuestas)>0)
+
+
+
+                                    <div class="m-t-15 m-checkbox-inline">
+                                        <div class="form-check form-check-inline checkbox checkbox-dark mb-0">
+                                          <input class="form-check-input" id="inline-1" type="checkbox" data-bs-original-title="" title="">
+                                          <label class="form-check-label" for="inline-1">Option<span class="digits"> 1</span></label>
+                                        </div>
+                                        
+                                    </div>
                                     
 
                                         <select name="{{$p->id}}" @if($p->id == 39) onchange="habilitar({{$p->id}});" id="{{$p->id}}" class="js-example-basic-single col-sm-12"  @elseif($p->id == 40) onchange="habilitar1({{$p->id}});" id="{{$p->id}}" class="js-example-basic-multiple col-sm-12" multiple="multiple" @else class="js-example-basic-single col-sm-12"  @endif  >
@@ -170,13 +180,24 @@
             document.getElementById('preg4').style.display = "none";
                
         }
-        if(padre == 'Instrucción' & padre == 'Inicio'){
-            document.getElementById('preg2').style.display = "block";
+
+        if(padre == 'Instrucción'){
+           
             document.getElementById('preg3').style.display = "block";
                         
         }else{
-            document.getElementById('preg2').style.display = "none";
+            
             document.getElementById('preg3').style.display = "none";
+               
+        }
+
+        if(padre == 'Inicio'){
+            document.getElementById('preg2').style.display = "block";
+            
+                        
+        }else{
+            document.getElementById('preg2').style.display = "none";
+            
                
         }
         

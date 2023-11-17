@@ -43,7 +43,7 @@
                                     @if(count($p->respuestas)>0)
                                     
 
-                                        <select name="{{$p->id}}" @if(($p->id == 25) OR ($p->id == 30) OR ($p->id == 35)) onchange="habilitar({{$p->id}});" id="{{$p->id}}"  @endif  class="js-example-basic-single col-sm-12" >
+                                        <select name="{{$p->id}}" @if($p->id == 25)  onchange="habilitar({{$p->id}});" id="{{$p->id}}" @elseif($p->id == 30) onchange="habilitar1({{$p->id}});" id="{{$p->id}}" @elseif($p->id == 35) onchange="habilitar2({{$p->id}});" id="{{$p->id}}" @endif  class="js-example-basic-single col-sm-12" >
                                             <option value="">Seleccione una Opción</option>
                                             @foreach($p->respuestas as $r )
                                                 <option value="{{$r->alt_respuesta}}">{{$r->alt_respuesta}}</option>
@@ -125,7 +125,7 @@
         }
     </script>
     <script>
-        function habilitar1(variable){
+        function habilitar(variable){
             var padre;
             padre = document.getElementById(variable);
             padre = padre[padre.selectedIndex].value;
@@ -148,6 +148,35 @@
             }else{
                 document.getElementById('preg6').style.display = "none";
             }
+            
+            if(padre == 'Si'){
+                document.getElementById('preg11').style.display = 'block';
+            }else{
+                document.getElementById('preg11').style.display = 'none';
+            }
+
+
+        }
+        function habilitar1(variable){
+            var padre;
+            padre = document.getElementById(variable);
+            padre = padre[padre.selectedIndex].value;
+
+
+            if(padre ==  'Expediente físico' || padre == 'Expediente electrónico'){
+                document.getElementById('preg6').style.display = "block";
+            }else{
+                document.getElementById('preg6').style.display = "none";
+            }
+            
+            
+
+        }
+        function habilitar2(variable){
+            var padre;
+            padre = document.getElementById(variable);
+            padre = padre[padre.selectedIndex].value;
+
             
             if(padre == 'Si'){
                 document.getElementById('preg11').style.display = 'block';

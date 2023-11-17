@@ -43,7 +43,7 @@
                                     @if(count($p->respuestas)>0)
                                     
 
-                                        <select name="{{$p->id}}" @if($p->id == 25) onchange="habilitar({{$p->id}});" id="{{$p->id}}" @elseif($p->id == 30) @endif  class="js-example-basic-single col-sm-12" >
+                                        <select name="{{$p->id}}" @if($p->id == 18) onchange="habilitar({{$p->id}});" id="{{$p->id}}" @endif  class="js-example-basic-single col-sm-12" >
                                             <option value="">Seleccione una Opción</option>
                                             @foreach($p->respuestas as $r )
                                                 <option value="{{$r->alt_respuesta}}">{{$r->alt_respuesta}}</option>
