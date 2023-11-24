@@ -32,23 +32,19 @@
                     
                 </div>
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="" name="marco-normativo">
+                    <form class="needs-validation" novalidate="">
                         <div class="row g-3">
+                            @foreach($preguntas as $p)
 
-
-                            @foreach($preguntas as $key => $p)
-
-                                <div class="col-md-12" onclick="cambiacolor({{$p->id}});" id="preg{{$key}}" >
+                                <div class="col-md-12" onclick="cambiacolor({{$p->id}});">
                                     <label class="form-label" for="validationCustom01">{{$p->n_pregunta}}.-  {{$p->pregunta}}</label>
                                     @if(count($p->respuestas)>0)
 
-                                    
-                                        <select  @if($p->id == 39) onchange="habilitar({{$p->id}});" id="{{$p->id}}" class="js-example-basic-single col-sm-12" name="{{$p->id}}" @elseif($p->id == 40)  id="{{$p->id}}" name="{{$p->id}}[]" class="js-example-basic-multiple col-sm-12" multiple="multiple" @else class="js-example-basic-single col-sm-12" name="{{$p->id}}" @endif  >
-                                            <option value="">Seleccione una Opción</option>
-                                            @foreach($p->respuestas as $r )
-                                                <option value="{{$r->alt_respuesta}}">{{$r->alt_respuesta}}</option>
-                                            @endforeach
-                                        </select>
+                                    <select name="" class="js-example-basic-single col-sm-12" id="" >
+                                        @foreach($p->respuestas as $r )
+                                            <option value="">{{$r->alt_respuesta}}</option>
+                                        @endforeach
+                                    </select>
                                     
                                     @else
                                     <input class="form-control" id="validationCustom01" type="text" required="" data-bs-original-title="" title="">
@@ -84,7 +80,7 @@
                     
 
                     
-                        <li id="coment{{$c->id}}">{{$c->n_pregunta}}.- {{$c->descripcion}}</li>
+                        <li id="{{$c->id}}">{{$c->n_pregunta}}.- {{$c->descripcion}}</li>
                     
                     
                     @endforeach
@@ -112,7 +108,7 @@
     <script>
         
         function cambiacolor(variable){
-        const caja = document.getElementById('coment'+variable);
+        const caja = document.getElementById(variable);
         
         caja.style.border = "2px solid red";
         caja.style.margin = "5px";
@@ -124,75 +120,5 @@
 
         }
     </script>
-
-<script>
-    function habilitar(variable){
-        var padre;
-        padre = document.getElementById(variable);
-        padre = padre[padre.selectedIndex].value;
-
-
-        if(padre == 'Si'){
-            document.getElementById('preg1').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg1').style.display = "none";
-               
-        }
-        
-
-
-    }
-
-
-    
-</script>
-
-<script>
-window.onload = function () {
-    var link;
-    
-    document.getElementById('preg1').style.display = "none";
-    document.getElementById('preg2').style.display = "none";
-    document.getElementById('preg3').style.display = "none";
-    document.getElementById('preg4').style.display = "none";
-     
-  
-
-    $('#40').change(function(){
-        var ids = $('#40').val();
-        //console.log(ids.includes('Inicio'));
-        if(ids.includes('Inicio')){
-            document.getElementById('preg2').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg2').style.display = "none";
-               
-        }
-        if(ids.includes('Instrucción')){
-            document.getElementById('preg3').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg3').style.display = "none";
-               
-        }
-        if(ids.includes('Término')){
-            document.getElementById('preg4').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg4').style.display = "none";
-               
-        }
-    });
-
-
-
-}
-</script>
-  
-
-
-
-   
 
 @endsection

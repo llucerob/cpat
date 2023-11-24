@@ -31,4 +31,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('form/{sec}', [UtilsController::class, 'secciones'])->name('ir.seccion');
+    Route::post('forms/paso1/enviar', [UtilsController::class, 'paso1'])->name('paso1.store');
+    
+    
 });

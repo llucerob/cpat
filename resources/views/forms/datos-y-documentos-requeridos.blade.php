@@ -41,9 +41,9 @@
                                 <div class="col-md-12" onclick="cambiacolor({{$p->id}});" id="preg{{$key}}" >
                                     <label class="form-label" for="validationCustom01">{{$p->n_pregunta}}.-  {{$p->pregunta}}</label>
                                     @if(count($p->respuestas)>0)
-
                                     
-                                        <select  @if($p->id == 39) onchange="habilitar({{$p->id}});" id="{{$p->id}}" class="js-example-basic-single col-sm-12" name="{{$p->id}}" @elseif($p->id == 40)  id="{{$p->id}}" name="{{$p->id}}[]" class="js-example-basic-multiple col-sm-12" multiple="multiple" @else class="js-example-basic-single col-sm-12" name="{{$p->id}}" @endif  >
+
+                                        <select name="{{$p->id}}" @if($p->id == 46) onchange="habilitar({{$p->id}});" id="{{$p->id}}" @elseif($p->id == 50) onchange="habilitar1({{$p->id}});" id="{{$p->id}}" @endif class="js-example-basic-single col-sm-12"  >
                                             <option value="">Seleccione una Opción</option>
                                             @foreach($p->respuestas as $r )
                                                 <option value="{{$r->alt_respuesta}}">{{$r->alt_respuesta}}</option>
@@ -132,63 +132,53 @@
         padre = padre[padre.selectedIndex].value;
 
 
-        if(padre == 'Si'){
-            document.getElementById('preg1').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg1').style.display = "none";
-               
-        }
         
+        if(padre == 'Si'){
+            document.getElementById('preg1').style.display = 'block';
+            document.getElementById('preg2').style.display = 'block';
+            document.getElementById('preg3').style.display = 'block';
+        }else{
+            document.getElementById('preg1').style.display = 'none';
+            document.getElementById('preg2').style.display = 'none';
+            document.getElementById('preg3').style.display = 'none';
+        }
+
+
+    }
+    function habilitar1(variable){
+        var padre;
+        padre = document.getElementById(variable);
+        padre = padre[padre.selectedIndex].value;
+
+
+        
+        if(padre == 'Si'){
+            document.getElementById('preg5').style.display = 'block';
+            
+        }else{
+            document.getElementById('preg5').style.display = 'none';
+            
+        }
 
 
     }
 
-
-    
 </script>
 
 <script>
-window.onload = function () {
-    var link;
-    
-    document.getElementById('preg1').style.display = "none";
-    document.getElementById('preg2').style.display = "none";
-    document.getElementById('preg3').style.display = "none";
-    document.getElementById('preg4').style.display = "none";
-     
-  
-
-    $('#40').change(function(){
-        var ids = $('#40').val();
-        //console.log(ids.includes('Inicio'));
-        if(ids.includes('Inicio')){
-            document.getElementById('preg2').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg2').style.display = "none";
-               
-        }
-        if(ids.includes('Instrucción')){
-            document.getElementById('preg3').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg3').style.display = "none";
-               
-        }
-        if(ids.includes('Término')){
-            document.getElementById('preg4').style.display = "block";
-                        
-        }else{
-            document.getElementById('preg4').style.display = "none";
-               
-        }
-    });
-
-
-
-}
-</script>
+    window.onload = function () {
+        var link;
+        
+        document.getElementById('preg1').style.display = "none";
+        document.getElementById('preg2').style.display = "none";
+        document.getElementById('preg3').style.display = "none";
+        document.getElementById('preg5').style.display = "none";
+        
+        
+       
+      
+    }
+  </script>
   
 
 

@@ -32,25 +32,26 @@
                     
                 </div>
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="">
+                    <form class="needs-validation" novalidate="" action="{{ route('paso1.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row g-3">
-                            @foreach($preguntas as $p)
+                            @foreach($preguntas as $key => $p)
 
                                 <div class="col-md-12" onclick="cambiacolor({{$p->id}});">
                                     <label class="form-label" for="validationCustom01">{{$p->n_pregunta}}.-  {{$p->pregunta}}</label>
                                     @if(count($p->respuestas)>0)
 
-                                    <select name="" class="js-example-basic-single col-sm-12" id="" >
-                                        @foreach($p->respuestas as $r )
-                                            <option value="">{{$r->alt_respuesta}}</option>
-                                        @endforeach
-                                    </select>
+                                        <select name="reg[{{$key}}]" class="js-example-basic-single col-sm-12"  >
+                                            @foreach($p->respuestas as $r )
+                                                <option value="{{$r->alt_respuesta}}">{{$r->alt_respuesta}}</option>
+                                            @endforeach
+                                        </select>
                                     
                                     @else
-                                    <input class="form-control" id="validationCustom01" type="text" required="" data-bs-original-title="" title="">
+                                        <input class="form-control" id="validationCustom01" type="text" name="reg[{{$key}}]" data-bs-original-title="">
 
                                     @endif
-                                    <div class="valid-feedback">Genial!</div>
+                                        <div class="valid-feedback">Genial!</div>
                                </div>
 
                             @endforeach

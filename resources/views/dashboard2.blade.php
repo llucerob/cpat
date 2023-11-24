@@ -62,7 +62,28 @@
                 </div>
             </div>
         </div>
-       
+        @foreach($registros as $r)
+        
+        <div class="col-sm-2">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{$r->nombreregistro}}</h5>
+                    
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
+                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
+                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
+                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
+                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
+                    
+                </div>
+            </div>
+        </div>
+        @endforeach
+        
+        
+      
         
     </div>
 </div>
