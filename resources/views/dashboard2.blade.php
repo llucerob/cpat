@@ -13,7 +13,7 @@
 @endsection
 
 @section('breadcrumb-title')
-    <h3>Escritorio</h3>
+    <h3>Procedimientos Comenzados {{count(Auth::user()->registros)}}</h3>
 @endsection
 
 @section('breadcrumb-items')
@@ -25,31 +25,7 @@
 <div class="container-fluid">
     <div class="row starter-main">
 
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Procedimientos Comenzados o terminados</h5>
-
-                    
-                </div>
-                <div class="card-body">
-                    <table class="display" id="basic-2">
-                        <thead>
-                            <tr>
-                                @foreach($secciones as $s)
-                                    <th>{{$s->seccion}}</th>
-
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div>
-        </div>
+        
         <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">
@@ -69,13 +45,13 @@
                 <div class="card-header">
                     <h5>{{$r->nombreregistro}}</h5>
                     
+                    <p class="text-danger">Avance: {{number_format(($r->resultados->last()->pregunta->id_seccion)*25/2, 1,',','.')}} %</p>
+                    
                 </div>
                 <div class="card-body">
-                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
-                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
-                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
-                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
-                    <button type="button" class="btn btn-primary m-2">Primary Button</button>
+                    <a href="{{route('continuar.proceso', $r->id)}}"  class="btn btn-primary m-2">Continuar</a>
+                    <a href="{{route('eliminar.proceso', $r->id)}}" class="btn btn-primary m-2">Eliminar</a>
+                    
                     
                 </div>
             </div>

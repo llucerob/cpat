@@ -30,8 +30,12 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
-    Route::get('form/{sec}', [UtilsController::class, 'secciones'])->name('ir.seccion');
+    Route::get('form/{sec}/{id?}', [UtilsController::class, 'secciones'])->name('ir.seccion');
     Route::post('forms/paso1/enviar', [UtilsController::class, 'paso1'])->name('paso1.store');
+    Route::post('forms/paso2/enviar/{id}', [UtilsController::class, 'paso2'])->name('paso2.store');
+    Route::get('eliminarproceso/{id}', [UtilsController::class, 'eliminarproceso'])->name('eliminar.proceso');
+
+    Route::get('continuarproceso/{id}', [UtilsController::class, 'continuarproceso'])->name('continuar.proceso');
     
     
 });

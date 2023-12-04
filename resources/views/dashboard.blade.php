@@ -25,31 +25,7 @@
 <div class="container-fluid">
     <div class="row starter-main">
 
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5>Procedimientos Comenzados o terminados</h5>
-
-                    
-                </div>
-                <div class="card-body">
-                    <table class="display" id="basic-2">
-                        <thead>
-                            <tr>
-                                @foreach($secciones as $s)
-                                    <th>{{$s->seccion}}</th>
-
-                                @endforeach
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                        </tbody>
-                    </table>
-                    
-                </div>
-            </div>
-        </div>
+        
         <div class="col-sm-2">
             <div class="card">
                 <div class="card-header">

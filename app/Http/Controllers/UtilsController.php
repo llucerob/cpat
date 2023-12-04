@@ -16,8 +16,8 @@ class UtilsController extends Controller
 
         $secciones = Seccion::all();
 
-        //dd(auth()->user()->registros);
-        if(count(auth()->user()->registros > 0){
+        //dd(auth()->user()->registros[0]->resultados->last()->pregunta);
+        if(count(auth()->user()->registros) > 0){
             
             return view('dashboard2', ['secciones' => $secciones, 'registros' => auth()->user()->registros]);
         }else{
@@ -26,10 +26,12 @@ class UtilsController extends Controller
      
     }
 
-    public function secciones($sec){
+    public function secciones($sec, $id){
 
        $seccion = Seccion::where('slug',$sec)->first();
        $secciones = Seccion::all();
+
+
 
        //dd($seccion->preguntas);
 
@@ -37,10 +39,29 @@ class UtilsController extends Controller
         
 
         
-        return view('forms/'.$sec, ['preguntas' => $seccion->preguntas, 'seccion' => $seccion->seccion]);
+        return view('forms/'.$sec, ['preguntas' => $seccion->preguntas, 'seccion' => $seccion->seccion, 'id' =>$id]);
         
         
         
+    }
+
+    public function eliminarproceso($id){
+        $registro = Registro::findOrFail($id);
+       
+        $registro->delete();
+
+        return redirect()->back();
+    }
+
+    public function continuarproceso($id){
+        $registro = Registro::findOrFail($id);
+
+        $seccion_id = $registro->resultados->last()->pregunta->id_seccion + 1; 
+
+        $seccion = Seccion::findOrFail($seccion_id);
+       
+
+        return  redirect()->route('ir.seccion', [$seccion->slug,$id]); 
     }
 
     public function paso1(Request $request){
@@ -70,7 +91,37 @@ class UtilsController extends Controller
         }
 
         
-       return redirect()->route('ir.seccion', ['marco-normativo']);
+       return redirect()->route('ir.seccion', ['marco-normativo', $new_registro->id]);
+        
+                
+        
+    }
+    public function paso2(Request $request, $id){
+
+
+        //dd($request);
+        
+        
+        $seccion = Seccion::findOrFail(2);
+        
+        //dd($seccion->preguntas);
+
+
+        foreach($seccion->preguntas as $p){
+            $marco = new RegistroAmp;
+            $marco->registro_id = $id;
+            $marco->pregunta_id = $p->id;
+            $marco->respuesta = $request->preg[$p->id];
+            
+
+            $marco->save();
+
+
+        }
+        $siguiente = Seccion::findOrFail(3);
+
+        
+       return redirect()->route('ir.seccion', [$siguiente->slug, $id]);
         
                 
         

@@ -28,11 +28,12 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-header">
-                    <h5>Marco Normativo</h5>
+                    <h5>Marco Normativo </h5>
                     
                 </div>
                 <div class="card-body">
-                    <form class="needs-validation" novalidate="" name="marco-normativo">
+                    <form class="needs-validation" novalidate="" action="{{ route('paso2.store', $id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="row g-3">
 
 
@@ -43,7 +44,7 @@
                                     @if(count($p->respuestas)>0)
                                     
 
-                                        <select name="{{$p->id}}" @if($p->id == 14) onchange="habilitar({{$p->id}});" id="{{$p->id}}"  @endif  class="js-example-basic-single col-sm-12" >
+                                        <select name="preg[{{$p->id}}]" @if($p->id == 14) onchange="habilitar({{$p->id}});" id="{{$p->id}}"  @endif  class="js-example-basic-single col-sm-12" >
                                             <option value="">Seleccione una Opción</option>
                                             @foreach($p->respuestas as $r )
                                                 <option value="{{$r->alt_respuesta}}">{{$r->alt_respuesta}}</option>
@@ -51,7 +52,7 @@
                                         </select>
                                     
                                     @else
-                                    <input class="form-control" id="validationCustom01" type="text" required="" data-bs-original-title="" title="">
+                                    <input class="form-control" name="preg[{{$p->id}}]" id="validationCustom01" type="text" required="" data-bs-original-title="" title="">
 
                                     @endif
                                     <div class="valid-feedback">Genial!</div>
